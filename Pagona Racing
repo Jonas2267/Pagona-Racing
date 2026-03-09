@@ -105,14 +105,14 @@
     }
 
     .brand img {
-      width: 38px;
-      height: 38px;
-      object-fit: cover;
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
       object-position: center;
-      border-radius: 12px;
+      border-radius: 11px;
       background: rgba(255, 255, 255, 0.045);
       border: 1px solid rgba(255, 255, 255, 0.16);
-      padding: 0.12rem;
+      padding: 0.1rem;
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(167, 255, 25, 0.08);
     }
 
@@ -317,6 +317,37 @@
       border: 1px solid rgba(255, 255, 255, 0.14);
     }
 
+    .hero-mark {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.55rem 0.9rem;
+      border-radius: 14px;
+      background: rgba(12, 14, 23, 0.44);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-mark img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .hero-mark span {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #ecedf3;
+      letter-spacing: 0.01em;
+    }
+
     .section-head {
       margin-bottom: 1.7rem;
       display: grid;
@@ -505,6 +536,10 @@
         <div class="hero-card glass reveal" aria-hidden="true">
           <div class="hero-logo-wrap">
             <img src="assets/pagona-logo.png" alt="Pagona Racing Emblem" id="heroLogo" />
+            <div class="hero-mark" id="heroMark">
+              <img src="assets/pagona-logo.png" alt="Pagona Racing Icon" id="heroMarkLogo" />
+              <span>Pagona Racing</span>
+            </div>
             <div class="logo-fallback" id="logoFallback">Pagona Racing</div>
           </div>
         </div>
@@ -644,15 +679,23 @@
       }, { passive: true });
 
       const heroLogo = document.getElementById('heroLogo');
+      const heroMark = document.getElementById('heroMark');
+      const heroMarkLogo = document.getElementById('heroMarkLogo');
       const logoFallback = document.getElementById('logoFallback');
       const showFallback = () => {
         if (!heroLogo || !logoFallback) return;
         heroLogo.style.display = 'none';
+        if (heroMark) heroMark.style.display = 'none';
         logoFallback.style.display = 'inline-block';
       };
 
       if (heroLogo) {
         heroLogo.addEventListener('error', showFallback, { once: true });
+      }
+      if (heroMarkLogo) {
+        heroMarkLogo.addEventListener('error', () => {
+          if (heroMark) heroMark.style.display = 'none';
+        }, { once: true });
       }
     })();
   </script>
