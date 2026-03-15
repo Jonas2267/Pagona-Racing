@@ -218,6 +218,7 @@
     .section-head { margin-bottom: 1.7rem; display: grid; gap: 0.35rem; }
 
     .about-card,
+    .team-wrap,
     .vision-card,
     .contact-card,
     .feature-wrap {
@@ -262,7 +263,9 @@
     .about-eyecatcher strong { color: var(--accent-green); font-size: 1rem; letter-spacing: 0.01em; }
 
     .values-grid,
-    .features-grid {
+    .features-grid,
+    .team-grid,
+    .social-grid {
       display: grid;
       gap: 1rem;
     }
@@ -272,24 +275,35 @@
       margin-top: 0.5rem;
     }
 
+    .features-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .social-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 1rem; }
+
     .value-card,
-    .feature-card {
+    .feature-card,
+    .team-card,
+    .social-card {
       padding: 1.15rem;
       border-radius: var(--radius-md);
       background: linear-gradient(140deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
       border: 1px solid rgba(255, 255, 255, 0.12);
-      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+      transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background var(--transition);
     }
 
     .value-card:hover,
-    .feature-card:hover {
+    .feature-card:hover,
+    .team-card:hover,
+    .social-card:hover {
       transform: translateY(-4px);
       border-color: rgba(167, 255, 25, 0.35);
       box-shadow: 0 10px 25px rgba(122, 61, 227, 0.18);
+      background: linear-gradient(140deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.045));
     }
 
     .value-icon,
-    .feature-icon {
+    .feature-icon,
+    .team-icon,
+    .social-icon {
       width: 2.2rem;
       height: 2.2rem;
       border-radius: 10px;
@@ -303,13 +317,30 @@
     }
 
     .value-card h3,
-    .feature-card h3 { font-size: 1.04rem; margin-bottom: 0.45rem; }
+    .feature-card h3,
+    .team-card h3,
+    .social-card h3 { font-size: 1.04rem; margin-bottom: 0.45rem; }
 
     .value-card p,
-    .feature-card p { margin: 0; color: var(--text-secondary); font-size: 0.95rem; }
+    .feature-card p,
+    .team-card p,
+    .social-card p { margin: 0; color: var(--text-secondary); font-size: 0.95rem; }
+
+    .role {
+      display: inline-flex;
+      margin-bottom: 0.55rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #d8eab8;
+      border: 1px solid rgba(167, 255, 25, 0.32);
+      border-radius: 999px;
+      padding: 0.23rem 0.6rem;
+      background: rgba(167, 255, 25, 0.08);
+    }
 
     .feature-wrap { margin-top: 1.2rem; }
-    .features-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
     .feature-pulse {
       position: absolute;
@@ -323,7 +354,22 @@
       animation: pulse 2s ease-out infinite;
     }
 
-    .contact-actions { margin-top: 1.35rem; }
+    .social-card {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .social-handle {
+      display: inline-flex;
+      margin-top: 0.45rem;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #e7f8cf;
+      border-bottom: 1px solid rgba(167, 255, 25, 0.4);
+    }
+
+    .contact-actions { margin-top: 1.35rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
     .contact-extra { margin-top: 0.8rem; color: var(--text-secondary); }
 
     .contact-mail {
@@ -338,7 +384,9 @@
     }
 
     .contact-mail:hover,
-    .contact-mail:focus-visible {
+    .contact-mail:focus-visible,
+    .social-card:focus-visible .social-handle,
+    .social-card:hover .social-handle {
       color: var(--accent-green);
       border-color: rgba(167, 255, 25, 0.7);
       text-shadow: 0 0 16px rgba(167, 255, 25, 0.3);
@@ -361,19 +409,6 @@
 
     .reveal.is-visible { opacity: 1; transform: translateY(0) scale(1); }
 
-    @keyframes speedFlow {
-      0% { transform: translateX(-10%) translateY(0); }
-      100% { transform: translateX(8%) translateY(0); }
-    }
-
-    @keyframes lapMove {
-      0% { transform: translate(-50%, -50%) translate(var(--orbit-x), var(--orbit-y)); }
-      25% { transform: translate(-50%, -50%) translate(5%, -39%); }
-      50% { transform: translate(-50%, -50%) translate(-40%, -5%); }
-      75% { transform: translate(-50%, -50%) translate(-8%, 35%); }
-      100% { transform: translate(-50%, -50%) translate(var(--orbit-x), var(--orbit-y)); }
-    }
-
     @keyframes pulse {
       0% { box-shadow: 0 0 0 0 rgba(123, 255, 0, 0.42); }
       100% { box-shadow: 0 0 0 14px rgba(123, 255, 0, 0); }
@@ -381,7 +416,9 @@
 
     @media (max-width: 980px) {
       .values-grid,
-      .features-grid { grid-template-columns: 1fr 1fr; }
+      .features-grid,
+      .team-grid,
+      .social-grid { grid-template-columns: 1fr 1fr; }
     }
 
     @media (max-width: 760px) {
@@ -396,7 +433,9 @@
       section { padding: 4rem 0; }
       .hero { min-height: auto; }
       .values-grid,
-      .features-grid { grid-template-columns: 1fr; }
+      .features-grid,
+      .team-grid,
+      .social-grid { grid-template-columns: 1fr; }
       .about-eyecatcher { align-items: flex-start; }
     }
 
@@ -419,6 +458,7 @@
       <a href="#home">Home</a>
       <a href="#about">Über uns</a>
       <a href="#values">Werte</a>
+      <a href="#team">Team</a>
       <a href="#vision">Vision</a>
       <a href="#contact">Kontakt</a>
     </nav>
@@ -438,7 +478,7 @@
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#about">Mehr erfahren</a>
-            <a class="btn btn-secondary" href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+            <a class="btn btn-secondary" href="https://instagram.com/pagonasimracingteam" target="_blank" rel="noreferrer">Instagram</a>
           </div>
         </div>
       </div>
@@ -463,6 +503,31 @@
               <span class="about-badge">Fokus</span>
               <span class="about-badge">Teamgeist</span>
             </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="container">
+        <article class="team-wrap glass reveal">
+          <div class="section-head">
+            <span class="eyebrow">Team</span>
+            <h2>Unser aktuelles Driver-Team</h2>
+          </div>
+          <div class="team-grid">
+            <article class="team-card">
+              <div class="team-icon">J</div>
+              <h3>Jonas</h3>
+              <span class="role">Driver &amp; Founder</span>
+              <p>Jonas ist Gründer von Pagona Racing und verantwortet Vision sowie Entwicklung des Teams. Mit Fokus auf Präzision, Performance und langfristiges Wachstum baut er das Team auf Disziplin, Konstanz und Wettbewerbsambition auf.</p>
+            </article>
+            <article class="team-card">
+              <div class="team-icon">C</div>
+              <h3>Chris</h3>
+              <span class="role">Driver &amp; Co-Builder</span>
+              <p>Chris ist ein zentraler Driver von Pagona Racing und hat das Team von Beginn an aktiv mit aufgebaut. Sein Fokus auf Teamwork, Konstanz und Renn-Disziplin stärkt das Fundament und unterstützt die langfristige Entwicklung.</p>
+            </article>
           </div>
         </article>
       </div>
@@ -532,9 +597,9 @@
             <h2>Wachsen. Mitfahren. Gemeinsam erfolgreich sein.</h2>
           </div>
           <p class="section-copy">
-            Unser Ziel ist es, als Team kontinuierlich größer zu werden, an Rennen teilzunehmen
-            und unser Niveau auf ein neues Level zu heben. Wir verbinden Performance mit Community –
-            motiviert, diszipliniert und mit klarem Blick auf die Zukunft.
+            Unsere Ausrichtung ist klar: präziser werden, diszipliniert wachsen und uns kontinuierlich
+            weiterentwickeln – auf der Strecke und als Team. Wir verfolgen einen langfristigen,
+            wettbewerbsorientierten Weg und bauen dabei bewusst eine starke Community mit auf.
           </p>
         </article>
       </div>
@@ -544,21 +609,39 @@
       <div class="container">
         <article class="contact-card glass reveal">
           <div class="section-head">
-            <span class="eyebrow">Kontakt</span>
+            <span class="eyebrow">Kontakt &amp; Socials</span>
             <h2>Begleite Pagona Racing auf dem nächsten Schritt.</h2>
           </div>
           <p class="section-copy">
-            Folge uns auf Instagram und werde Teil einer Community, die Präzision, Leidenschaft und
-            Zusammenhalt lebt.
+            Follow Pagona Racing und bleib mit unserem Fortschritt, Rennen und der Team-Entwicklung
+            verbunden – auf Instagram und TikTok.
           </p>
+
+          <div class="social-grid">
+            <a class="social-card" href="https://instagram.com/pagonasimracingteam" target="_blank" rel="noreferrer" aria-label="Instagram von Pagona Racing öffnen">
+              <div class="social-icon">◉</div>
+              <h3>Instagram</h3>
+              <p>Insights, Race-Momente und Team-Updates direkt aus unserem Alltag.</p>
+              <span class="social-handle">@pagonasimracingteam</span>
+            </a>
+            <a class="social-card" href="https://www.tiktok.com/@pagonasimracingteam" target="_blank" rel="noreferrer" aria-label="TikTok von Pagona Racing öffnen">
+              <div class="social-icon">♫</div>
+              <h3>TikTok</h3>
+              <p>Clips, Highlights und Behind-the-Scenes mit klarem Sim-Racing-Fokus.</p>
+              <span class="social-handle">@pagonasimracingteam</span>
+            </a>
+          </div>
+
           <p class="contact-extra">
             Interesse an Pagona Racing? Wenn du unsere Vision teilst, Teil des Teams werden möchtest
             oder mit uns in Kontakt treten willst, melde dich gerne direkt bei uns.
             <br />
             <a class="contact-mail" href="mailto:pagonasim@gmail.com">pagonasim@gmail.com</a>
           </p>
+
           <div class="contact-actions">
-            <a class="btn btn-primary" href="https://instagram.com" target="_blank" rel="noreferrer">Zu Instagram</a>
+            <a class="btn btn-primary" href="https://instagram.com/pagonasimracingteam" target="_blank" rel="noreferrer">Instagram folgen</a>
+            <a class="btn btn-secondary" href="https://www.tiktok.com/@pagonasimracingteam" target="_blank" rel="noreferrer">TikTok ansehen</a>
           </div>
         </article>
       </div>
@@ -598,7 +681,6 @@
           rafId = null;
         });
       }, { passive: true });
-
     })();
   </script>
 </body>
