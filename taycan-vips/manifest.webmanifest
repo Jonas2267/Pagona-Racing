@@ -1,15 +1,15 @@
 {
   "id": "./",
-  "name": "Taycan VIPS – Mission 80.000 €",
-  "short_name": "Taycan VIPS",
-  "description": "Persönlicher Spar-, Budget- und Forecast-Planer für das Taycan-Ziel.",
+  "name": "Taycan VIPS P.1 – Porsche Edition",
+  "short_name": "VIPS P.1",
+  "description": "Private Porsche-Ziel-, Konto- und Forecast-App mit zentraler Bankkontologik.",
   "lang": "de-DE",
   "start_url": "./?source=home-screen",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#060909",
-  "theme_color": "#070b0b",
+  "background_color": "#080809",
+  "theme_color": "#080809",
   "categories": ["finance", "productivity"],
   "icons": [{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
 }
